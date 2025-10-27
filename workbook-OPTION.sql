@@ -104,10 +104,12 @@ AND CLASS_NO = 'C2604100';
 -- 13. 예체능 계열 과목 중 과목 담당교수를 한 명도 배정받지 못한 과목을 찾아
 -- 그 과목 이름과 학과 이름을 출력하는 SQL 문장을 작성하시오
 
-
-
-
-
+SELECT CLASS_NAME, DEPARTMENT_NAME
+FROM TB_CLASS tc
+JOIN TB_DEPARTMENT USING(DEPARTMENT_NO)
+JOIN TB_CLASS_PROFESSOR tcp ON(tcp.CLASS_NO = tc.CLASS_NO)
+WHERE CATEGORY = '예체능'
+AND tcp.CLASS_NO NOT IN (tc.CLASS_NO);
 
 -- 14. 춘 기술대학교 서반아어학과 학생들의 지도교수를 게시하고자 한다.
 -- 학생이름과 지도교수 이름을 찾고 만일 지도 교수가 없는 학생일 경우
